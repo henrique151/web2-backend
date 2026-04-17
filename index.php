@@ -425,7 +425,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
  
                 if (!isValid) {
-                    event.preventDefault();
                     showToast("Por favor, corrija os campos inválidos.", "error");
                     return;
                 }
