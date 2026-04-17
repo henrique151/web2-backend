@@ -1,3 +1,19 @@
+<?php 
+$nome = "";
+$email = "";
+$telefone = "";
+$servico = "";
+$mensagem = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST["name"] ?? "";
+    $email = $_POST["email"] ?? "";
+    $telefone = $_POST["phone"] ?? "";
+    $servico = $_POST["subject"] ?? "";
+    $mensagem = $_POST["message"] ?? "";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -269,7 +285,7 @@
 
                         <!-- Mensagem -->
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" name="subject" id="message" placeholder="Digite sua mensagem aqui..."
+                            <textarea class="form-control" name="message" id="message" placeholder="Digite sua mensagem aqui..."
                                 style="height: 10rem" data-sb-validations="required"></textarea>
                             <label for="message">Mensagem</label>
                             <div class="invalid-feedback" data-sb-feedback="message:required">
@@ -302,6 +318,17 @@
                     </form>
                 </div>
             </div>
+
+            <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+              <div class="alert alert-success mt-4">
+                <h5>Dados recebidos:</h5>
+                <p><strong>Nome:</strong> <?= htmlspecialchars($nome) ?></p>
+                <p><strong>Email:</strong> <?= htmlspecialchars($email) ?></p>
+                <p><strong>Telefone:</strong> <?= htmlspecialchars($telefone) ?></p>
+                <p><strong>Serviço:</strong> <?= htmlspecialchars($servico) ?></p>
+                <p><strong>Mensagem:</strong> <?= htmlspecialchars($mensagem) ?></p>
+              </div>
+            <?php endif; ?>
 
             <!-- Informações de contato -->
             <div class="row gx-4 gx-lg-5 justify-content-center">
