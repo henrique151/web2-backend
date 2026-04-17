@@ -22,7 +22,6 @@ export const initContactForm = () => {
   });
 
   form.addEventListener("submit", async function (event) {
-    event.preventDefault();
 
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
