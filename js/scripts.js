@@ -5,5 +5,5 @@ import { initContactForm } from "./form.js";
 window.addEventListener("DOMContentLoaded", () => {
   addToastStyles();
   initUI();
-  // initContactForm();
+  initContactForm();
 });

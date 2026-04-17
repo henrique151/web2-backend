@@ -22,7 +22,6 @@ export const initContactForm = () => {
   });
 
   form.addEventListener("submit", async function (event) {
-
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
     const subjectInput = document.getElementById("subject");
@@ -89,17 +88,16 @@ export const initContactForm = () => {
       message: messageInput.value,
     };
 
-
     // alert("Dados:", formData.name, formData.email, formData.phone, formData.subject, formData.message);
     showToast(
-    `Nome: ${formData.name}
+      `Nome: ${formData.name}
      Email: ${formData.email}
      Telefone: ${formData.phone}
      Assunto: ${formData.subject}
      Mensagem: ${formData.message}
     `,
-    "success"
-);
+      "success",
+    );
     form.reset();
     if (phoneMask) phoneMask.updateValue();
     // try {
@@ -111,7 +109,6 @@ export const initContactForm = () => {
     //     body: JSON.stringify(formData),
     //   });
 
-     
     //   if (!response.ok) throw new Error("Erro no envio");
 
     //   showToast("E-mail enviado com sucesso!", "success");

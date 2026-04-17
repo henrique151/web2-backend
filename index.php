@@ -1,5 +1,4 @@
 <?php 
-var_dump($_POST);
 $nome = "";
 $email = "";
 $telefone = "";
@@ -13,9 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servico = $_POST["subject"] ?? "";
     $mensagem = $_POST["message"] ?? "";
 }
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -34,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/loading.css" rel="stylesheet" />
     <!-- EmailJS API-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://unpkg.com/imask"></script>
