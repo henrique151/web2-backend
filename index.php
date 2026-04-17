@@ -372,10 +372,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Config file -->
-    <!-- <script src="js/config.js"></script> -->
     <!-- Core theme JS-->
-    <!-- <script src="js/scripts.js" type="module"></script> -->
+    <script src="js/scripts.js" type="module"></script> 
 </body>
 
 </html>
