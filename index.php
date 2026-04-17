@@ -368,9 +368,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js" type="module"></script>
-      <script>
-        const form = document.getElementById("contactForm");
+    <!-- <script src="js/scripts.js" type="module"></script> -->
+    <script>
+    const navbarShrink = function () {
+      const navbarCollapsible = document.body.querySelector("#mainNav");
+      if (!navbarCollapsible) return;
+  
+      if (window.scrollY === 0) {
+        navbarCollapsible.classList.remove("navbar-shrink");
+      } else {
+        navbarCollapsible.classList.add("navbar-shrink");
+      }
+    };
+    navbarShrink();
+    document.addEventListener("scroll", navbarShrink);
+  
+
+    const mainNav = document.body.querySelector("#mainNav");
+    if (mainNav) {
+      new bootstrap.ScrollSpy(document.body, {
+        target: "#mainNav",
+        rootMargin: "0px 0px -40%",
+      });
+    }
+  
+    const navbarToggler = document.body.querySelector(".navbar-toggler");
+    const responsiveNavItems = [].slice.call(
+      document.querySelectorAll("#navbarResponsive .nav-link")
+    );
+    responsiveNavItems.map(function (responsiveNavItem) {
+      responsiveNavItem.addEventListener("click", () => {
+        if (window.getComputedStyle(navbarToggler).display !== "none") {
+          navbarToggler.click();
+        }
+      });
+    });
+
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader-wrapper");
+        if (loader) {
+          loader.style.display = "none";
+        }
+    });
+    
+    const form = document.getElementById("contactForm");
         if (form) {
             const submitButton = form.querySelector('button[type="submit"]');
  
