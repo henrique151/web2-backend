@@ -46,11 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </a> -->
 
 <body id="page-top">
-    <div id="loader-wrapper">
-        <div class="loader"></div>
-    </div>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="#home"><img src="assets/img/background.png" alt="..." /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
