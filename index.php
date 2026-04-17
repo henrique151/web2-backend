@@ -18,8 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistema Web II</title>
+  <title>Formulário de Contato</title>
 </head>
 <body>
 
@@ -29,31 +28,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <form method="POST" action="">
     
     <label>Nome:</label><br>
-    <input class="form-control" id="name" name="name" type="text">
+    <input type="text" name="name" required><br><br>
   
     <label>E-mail:</label><br>
-    <input class="form-control" id="email" name="email" type="email">
+    <input type="email" name="email" required><br><br>
   
     <label>Telefone:</label><br>
-    <input class="form-control" id="phone" name="phone" type="tel">
+    <input type="tel" name="phone" required><br><br>
   
     <label>Assunto:</label><br>
-    <select class="form-control" id="subject" name="subject">
-  
+    <select name="subject" required>
+      <option value="">Selecione</option>
+      <option value="Reparos Hidráulicos">Reparos Hidráulicos</option>
+      <option value="Desentupimentos">Desentupimentos</option>
+      <option value="Caça-vazamentos">Caça-vazamentos</option>
+      <option value="Instalações">Instalações</option>
+    </select><br><br>
+
     <label>Mensagem:</label><br>
+    <textarea name="message" rows="4" required></textarea><br><br>
   
     <button type="submit">Cadastrar</button>
   </form>
 
- <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
-  <h2>Dados recebidos</h2>
+  <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+    <h2>Dados recebidos</h2>
 
-  <p><strong>Nome:</strong> <?= htmlspecialchars($nome) ?></p>
-  <p><strong>Email:</strong> <?= htmlspecialchars($email) ?></p>
-  <p><strong>Telefone:</strong> <?= htmlspecialchars($telefone) ?></p>
-  <p><strong>Serviço:</strong> <?= htmlspecialchars($servico) ?></p>
-  <p><strong>Mensagem:</strong> <?= htmlspecialchars($mensagem) ?></p>
-<?php endif; ?>
+    <p><strong>Nome:</strong> <?= htmlspecialchars($nome) ?></p>
+    <p><strong>Email:</strong> <?= htmlspecialchars($email) ?></p>
+    <p><strong>Telefone:</strong> <?= htmlspecialchars($telefone) ?></p>
+    <p><strong>Serviço:</strong> <?= htmlspecialchars($servico) ?></p>
+    <p><strong>Mensagem:</strong> <?= htmlspecialchars($mensagem) ?></p>
+  <?php endif; ?>
 
 </body>
 </html>
