@@ -4,7 +4,7 @@ $email = "";
 $telefone = "";
 $servico = "";
 $mensagem = "";
-
+ 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["name"] ?? "";
     $email = $_POST["email"] ?? "";
@@ -12,37 +12,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servico = $_POST["subject"] ?? "";
     $mensagem = $_POST["message"] ?? "";
 }
-?><!DOCTYPE html>
+?>
+ 
+<!DOCTYPE html>
 <html lang="pt-br">
-
+ 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Soluções em Hidráulica e Elétrica</title>
-    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/img/background.png" />
-    <!-- Font Awesome icons -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    <!-- EmailJS API-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://unpkg.com/imask"></script>
-    <!-- Toastify JS-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
-
+ 
 <!-- <a id="whatsapp-link" href="https://wa.me/5511912494624" class="whatsapp-float" target="_blank"
     aria-label="Fale conosco pelo WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a> -->
-
+ 
 <body id="page-top">
     <div id="loader-wrapper">
         <div class="loader"></div>
@@ -76,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a class="btn btn-primary btn-xl" href="#servicos">Conheça Nossos Serviços</a>
         </div>
     </header>
-    <!-- Services-->
+    <!-- Quem Somos -->
     <section class="page-section" id="quemsomos">
         <div class="container">
             <section class="py-3">
@@ -97,8 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="col-lg-6">
                             <h2 class="fw-bolder mb-4 btn-titulo-2">Experiência que gera confiança</h2>
                             <p class="lead fw-normal text-muted mb-0 subtitulo">Somos uma empresa especializada em
-                                serviços
-                                hidráulicos e elétricos, atuando com
+                                serviços hidráulicos e elétricos, atuando com
                                 segurança, qualidade e respeito às normas técnicas. Oferecemos soluções eficientes
                                 para garantir o bom funcionamento das instalações e a satisfação dos nossos clientes.
                                 <br><br>
@@ -113,7 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </section>
         </div>
     </section>
-
+ 
+    <!-- Serviços -->
     <section class="page-section" id="servicos">
         <div class="container">
             <div class="row gx-2 justify-content-center">
@@ -128,8 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="row">
                 <div class="col-lg-4 mb-2">
                     <div class="card h-100 border-0">
-                        <img class="card-img-top img-fluid rounded" src="assets/img/reparos-hidraulicos.jpg"
-                            alt="..." />
+                        <img class="card-img-top img-fluid rounded" src="assets/img/reparos-hidraulicos.jpg" alt="..." />
                         <div class="card-body">
                             <div class="text-decoration-none link-dark stretched-link" href="#!">
                                 <h5 class="card-title btn-subtitulo mt-2">Reparos Hidráulicos</h5>
@@ -162,29 +158,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <p class="card-text text-muted mb-3">Detecção de vazamentos com equipamentos modernos,
                                 evitando quebras desnecessárias e prevenindo desperdício de água e
-                                danos ao imóvel.
-                            </p>
+                                danos ao imóvel.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-2">
                     <div class="card h-100 border-0">
-                        <img class="card-img-top img-fluid rounded" src="assets/img/ajustes-em-sistemas.jpg"
-                            alt="..." />
+                        <img class="card-img-top img-fluid rounded" src="assets/img/ajustes-em-sistemas.jpg" alt="..." />
                         <div class="card-body">
                             <div class="text-decoration-none link-dark stretched-link" href="#!">
                                 <h5 class="card-title btn-subtitulo mt-2">Ajustes em sistemas</h5>
                             </div>
                             <p class="card-text text-muted mb-3">Ajustes técnicos em sistemas hidráulicos para correção
-                                de pressão, boias e caixas d’água, assegurando desempenho ideal e
+                                de pressão, boias e caixas d'água, assegurando desempenho ideal e
                                 economia.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-2">
-                    <div class="card h-100  border-0">
-                        <img class="card-img-top img-fluid rounded" src="assets/img/redes-pressurizadas.jpg"
-                            alt="..." />
+                    <div class="card h-100 border-0">
+                        <img class="card-img-top img-fluid rounded" src="assets/img/redes-pressurizadas.jpg" alt="..." />
                         <div class="card-body">
                             <div class="text-decoration-none link-dark stretched-link" href="#!">
                                 <h5 class="card-title btn-subtitulo mt-2">Instalações completas</h5>
@@ -197,8 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-lg-4 mb-2">
                     <div class="card h-100 border-0">
-                        <img class="card-img-top img-fluid rounded" src="assets/img/troca-de-peças-hidraulicas.jpg"
-                            alt="..." />
+                        <img class="card-img-top img-fluid rounded" src="assets/img/troca-de-peças-hidraulicas.jpg" alt="..." />
                         <div class="card-body">
                             <div class="text-decoration-none link-dark stretched-link" href="#!">
                                 <h5 class="card-title btn-subtitulo mt-2">Troca de peças hidráulicas</h5>
@@ -212,7 +204,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </section>
-
+ 
+    <!-- Contato -->
     <section class="page-contact pt-0 pb-5" id="contato">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -225,10 +218,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </p>
                 </div>
             </div>
-
+ 
             <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                 <div class="col-lg-6">
-                   <form id="contactForm" method="post" action="">
+                    <form id="contactForm" method="post" action="">
                         <!-- Nome -->
                         <div class="form-floating mb-3">
                             <input class="form-control" name="name" id="name" type="text" placeholder="Digite seu nome completo"
@@ -238,7 +231,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 O nome é obrigatório.
                             </div>
                         </div>
-
                         <!-- Email -->
                         <div class="form-floating mb-3">
                             <input class="form-control" name="email" id="email" type="email" placeholder="nome@exemplo.com"
@@ -251,7 +243,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 E-mail inválido.
                             </div>
                         </div>
-
                         <!-- Telefone -->
                         <div class="form-floating mb-3">
                             <input class="form-control" name="phone" id="phone" type="tel" placeholder="(11) 99999-9999"
@@ -261,10 +252,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 O telefone é obrigatório.
                             </div>
                         </div>
-
                         <!-- Serviço -->
                         <div class="form-floating mb-3">
-                            <select class="form-control"  name="subject" id="subject" data-sb-validations="required">
+                            <select class="form-select" name="subject" id="subject" aria-label="Serviço" data-sb-validations="required">
                                 <option value="" disabled selected>Selecione o tipo de serviço</option>
                                 <option value="Reparos Hidráulicos">Reparos Hidráulicos</option>
                                 <option value="Desentupimentos">Desentupimentos</option>
@@ -279,7 +269,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 O serviço é obrigatório.
                             </div>
                         </div>
-
                         <!-- Mensagem -->
                         <div class="form-floating mb-3">
                             <textarea class="form-control" name="message" id="message" placeholder="Digite sua mensagem aqui..."
@@ -289,7 +278,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 A mensagem é obrigatória.
                             </div>
                         </div>
-
                         <!-- Mensagem de sucesso -->
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
@@ -297,25 +285,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 Entraremos em contato em breve.
                             </div>
                         </div>
-
                         <!-- Mensagem de erro -->
                         <div class="d-none" id="submitErrorMessage">
                             <div class="text-center text-danger mb-3">
                                 Erro ao enviar a mensagem. Tente novamente.
                             </div>
                         </div>
-
                         <!-- Botão -->
                         <div class="d-grid">
                             <button class="btn btn-primary btn-xl" id="submitButton" type="submit">
                                 Enviar mensagem
                             </button>
                         </div>
-
                     </form>
                 </div>
             </div>
-
+ 
             <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
               <div class="alert alert-success mt-4">
                 <h5>Dados recebidos:</h5>
@@ -326,37 +311,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p><strong>Mensagem:</strong> <?= htmlspecialchars($mensagem) ?></p>
               </div>
             <?php endif; ?>
-
+ 
             <!-- Informações de contato -->
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <!-- Endereço -->
                 <div class="col-lg-4 text-center mb-3 mb-lg-0">
                     <i class="bi-house fs-2 mb-3 text-muted"></i>
                     <div class="fw-bold">São Paulo - SP</div>
-                    <div class="text-muted">
-                        AAAA
-                    </div>
+                    <div class="text-muted">AAAA</div>
                 </div>
-                <!-- Telefone -->
                 <div class="col-lg-4 text-center mb-3 mb-lg-0">
                     <i class="bi-phone fs-2 mb-3 text-muted"></i>
                     <div class="fw-bold">+55 (11) 99999-9999</div>
-                    <div class="text-muted">
-                        De segunda a sexta, das 9h às 18h
-                    </div>
+                    <div class="text-muted">De segunda a sexta, das 9h às 18h</div>
                 </div>
-                <!-- Email -->
                 <div class="col-lg-4 text-center mb-3 mb-lg-0">
                     <i class="bi-envelope fs-2 mb-3 text-mute"></i>
                     <div class="fw-bold">exemplo@gmail.com</div>
-                    <div class="text-muted">
-                        Ou, se preferir, preencha o formulário ao lado
-                    </div>
+                    <div class="text-muted">Ou, se preferir, preencha o formulário ao lado</div>
                 </div>
             </div>
         </div>
     </section>
-
+ 
     <footer class="footer-background py-3 mt-3">
         <div class="container px-2 px-lg-5">
             <div class="text-center text-white">
@@ -365,11 +341,100 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </footer>
+ 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js" type="module"></script> 
+    <!-- <script src="js/scripts.js" type="module"></script> -->
+    <script>
+        const form = document.getElementById("contactForm");
+        if (form) {
+            const submitButton = form.querySelector('button[type="submit"]');
+ 
+            let phoneMask;
+            const phoneInput = document.getElementById("phone");
+            if (phoneInput) {
+                phoneMask = IMask(phoneInput, { mask: "(00) 00000-0000" });
+            }
+ 
+            const inputs = Array.from(form.querySelectorAll("input, textarea"));
+            inputs.forEach((input) => {
+                input.addEventListener("input", () => {
+                    if (submitButton.disabled) {
+                        submitButton.disabled = false;
+                    }
+                });
+            });
+ 
+            function showToast(message, type) {
+                Toastify({
+                    text: message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    style: {
+                        background: type === "error" ? "red" : "green",
+                    }
+                }).showToast();
+            }
+ 
+            form.addEventListener("submit", async function (event) {
+                const nameInput    = document.getElementById("name");
+                const emailInput   = document.getElementById("email");
+                const subjectInput = document.getElementById("subject");
+                const messageInput = document.getElementById("message");
+ 
+                const ValidacaoEmail = (email) => {
+                    if (!email || email.trim() === "") return false;
+                    if (email.includes(" ")) return false;
+                    const atIndex = email.indexOf("@");
+                    if (atIndex <= 0 || email.lastIndexOf("@") !== atIndex) return false;
+                    const domainPart  = email.substring(atIndex + 1);
+                    const domainParts = domainPart.split(".");
+                    return !(
+                        domainParts.length < 2 ||
+                        domainParts.some((p) => p.length === 0) ||
+                        domainParts[domainParts.length - 1].length < 2
+                    );
+                };
+ 
+                const phonePattern = /^\(\d{2}\) \d{5}-\d{4}$/;
+ 
+                inputs.forEach((input) => input.classList.remove("is-invalid"));
+ 
+                let isValid = true;
+ 
+                if (nameInput.value.trim() === "") {
+                    nameInput.classList.add("is-invalid");
+                    isValid = false;
+                }
+                if (!ValidacaoEmail(emailInput.value)) {
+                    emailInput.classList.add("is-invalid");
+                    isValid = false;
+                }
+                if (phoneInput && !phonePattern.test(phoneInput.value)) {
+                    phoneInput.classList.add("is-invalid");
+                    isValid = false;
+                }
+                if (subjectInput.value.trim() === "") {
+                    subjectInput.classList.add("is-invalid");
+                    isValid = false;
+                }
+                if (messageInput.value.trim() === "") {
+                    messageInput.classList.add("is-invalid");
+                    isValid = false;
+                }
+ 
+                if (!isValid) {
+                    event.preventDefault();
+                    showToast("Por favor, corrija os campos inválidos.", "error");
+                    return;
+                }
+ 
+                submitButton.disabled = true;
+                form.reset();
+                if (phoneMask) phoneMask.updateValue();   
+            });
+        }
+    </script>
 </body>
-
 </html>
