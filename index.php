@@ -1,4 +1,5 @@
 <?php 
+var_dump($_POST);
 $nome = "";
 $email = "";
 $telefone = "";
@@ -231,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                 <div class="col-lg-6">
-                    <form id="contactForm" method="post">
+                   <form id="contactForm" method="post" action="">
                         <!-- Nome -->
                         <div class="form-floating mb-3">
                             <input class="form-control" name="name" id="name" type="text" placeholder="Digite seu nome completo"
@@ -372,9 +373,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Config file -->
-    <script src="js/config.js"></script>
+    <!-- <script src="js/config.js"></script> -->
     <!-- Core theme JS-->
-    <script src="js/scripts.js" type="module"></script>
+    <!-- <script src="js/scripts.js" type="module"></script> -->
 </body>
 
 </html>
