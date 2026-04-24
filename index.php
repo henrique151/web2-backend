@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$queryLista = "SELECT id, nome, email, telefone FROM usuarios ORDER BY id DESC";
+$queryLista = "SELECT id, nome, email, telefone, servico, mensagememail FROM usuarios ORDER BY id DESC";
 $resultLista = pg_query($conn, $queryLista);   
 ?>
 
@@ -391,8 +391,8 @@ $resultLista = pg_query($conn, $queryLista);
                       <td><?php echo htmlspecialchars($usuario["nome"]); ?></td>
                       <td><?php echo htmlspecialchars($usuario["email"]); ?></td>
                       <td><?php echo htmlspecialchars($usuario["telefone"]); ?></td>
-                      <td><?php echo htmlspecialchars($usuario["servico"]); ?></td>
-                      <td><?php echo htmlspecialchars($usuario["mensagemEmail"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["servico"] ?? ""); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["mensagememail"] ?? ""); ?></td>
                     </tr>
                   <?php endwhile; ?>
                 </tbody>
