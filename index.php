@@ -1,4 +1,5 @@
 <?php 
+$mensagem = "";
 $nome = "";
 $email = "";
 $telefone = "";
@@ -37,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = pg_query_params($conn, $query, [$nome, $email, $telefone, $servico, $mensagemEmail]);
 
         if ($result) {
-            $mensagem = "Usuário cadastrado com sucesso no banco de dados.";
+            $mensagem = "Mensagem enviada com sucesso! Entraremos em contato em breve.";
             $tipoMensagem = "sucesso";
 
             $nome = "";
@@ -53,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$queryLista = "SELECT id, nome, email, telefone, servico, mensagemEmail FROM usuarios ORDER BY id DESC";
-$resultLista = pg_query($conn, $queryLista);    
+// FIX 3: REMOVIDA a query que listava todos os usuários publicamente (falha de segurança grave)
+// Se precisar de uma área administrativa, ela deve ser protegida por autenticação em página separada.
 ?>
 
 <!DOCTYPE html>
@@ -218,7 +219,7 @@ $resultLista = pg_query($conn, $queryLista);
                                 <h5 class="card-title btn-subtitulo mt-2">Ajustes em sistemas</h5>
                             </div>
                             <p class="card-text text-muted mb-3">Ajustes técnicos em sistemas hidráulicos para correção
-                                de pressão, boias e caixas d’água, assegurando desempenho ideal e
+                                de pressão, boias e caixas d'água, assegurando desempenho ideal e
                                 economia.</p>
                         </div>
                     </div>
@@ -358,50 +359,16 @@ $resultLista = pg_query($conn, $queryLista);
                 </div>
             </div>
 
-            <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
-              <div class="alert alert-success mt-4">
-                <h5>Dados recebidos:</h5>
-                <p><strong>Nome:</strong> <?= htmlspecialchars($nome) ?></p>
-                <p><strong>Email:</strong> <?= htmlspecialchars($email) ?></p>
-                <p><strong>Telefone:</strong> <?= htmlspecialchars($telefone) ?></p>
-                <p><strong>Serviço:</strong> <?= htmlspecialchars($servico) ?></p>
-                <p><strong>Mensagem:</strong> <?= htmlspecialchars($mensagem) ?></p>
-              </div>
-            <?php endif; ?>
 
-             <?php if ($mensagem !== ""): ?>
-              <div class="mensagem <?php echo $tipoMensagem; ?>">
-                <?php echo htmlspecialchars($mensagem); ?>
+            <!-- Feedback de envio para o usuário -->
+            <?php if ($mensagem !== ""): ?>
+              <div class="row justify-content-center">
+                <div class="col-lg-6">
+                  <div class="alert <?php echo $tipoMensagem === 'sucesso' ? 'alert-success' : 'alert-danger'; ?> mt-2">
+                    <?php echo htmlspecialchars($mensagem); ?>
+                  </div>
+                </div>
               </div>
-            <?php endif; ?>
-
-            <?php if ($resultLista && pg_num_rows($resultLista) > 0): ?>
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Serviço</th>
-                    <th>Messagem do Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php while ($usuario = pg_fetch_assoc($resultLista)): ?>
-                    <tr>
-                      <td><?php echo htmlspecialchars($usuario["id"]); ?></td>
-                      <td><?php echo htmlspecialchars($usuario["nome"]); ?></td>
-                      <td><?php echo htmlspecialchars($usuario["email"]); ?></td>
-                      <td><?php echo htmlspecialchars($usuario["telefone"]); ?></td>
-                      <td><?php echo htmlspecialchars($usuario["servico"]); ?></td>
-                      <td><?php echo htmlspecialchars($usuario["mensagemEmail"]); ?></td>
-                    </tr>
-                  <?php endwhile; ?>
-                </tbody>
-              </table>
-            <?php else: ?>
-              <p class="sem-registros">Nenhum usuário cadastrado.</p>
             <?php endif; ?>
 
             <!-- Informações de contato -->
@@ -446,7 +413,6 @@ $resultLista = pg_query($conn, $queryLista);
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <!-- <script src="js/scripts.js" type="module"></script> -->
     <script>
     const navbarShrink = function () {
       const navbarCollapsible = document.body.querySelector("#mainNav");
@@ -461,7 +427,6 @@ $resultLista = pg_query($conn, $queryLista);
     navbarShrink();
     document.addEventListener("scroll", navbarShrink);
   
-
     const mainNav = document.body.querySelector("#mainNav");
     if (mainNav) {
       new bootstrap.ScrollSpy(document.body, {
@@ -490,28 +455,39 @@ $resultLista = pg_query($conn, $queryLista);
     });
     
     const form = document.getElementById("contactForm");
-        if (form) {
-            const submitButton = form.querySelector('button[type="submit"]');
- 
-            let phoneMask;
-            const phoneInput = document.getElementById("phone");
-            if (phoneInput) {
-                phoneMask = IMask(phoneInput, { mask: "(00) 00000-0000" });
-            }
- 
-            const inputs = Array.from(form.querySelectorAll("input, textarea"));
-            inputs.forEach((input) => {
-                input.addEventListener("input", () => {
-                    if (submitButton.disabled) {
-                        submitButton.disabled = false;
-                    }
-                });
-            });
+    if (form) {
+        const submitButton = form.querySelector('button[type="submit"]');
 
-            submitButton.disabled = true;
-            form.reset();
-            if (phoneMask) phoneMask.updateValue();
+        let phoneMask;
+        const phoneInput = document.getElementById("phone");
+        if (phoneInput) {
+            phoneMask = IMask(phoneInput, { mask: "(00) 00000-0000" });
         }
+
+        function checkFormFilled() {
+            const name    = document.getElementById("name").value.trim();
+            const email   = document.getElementById("email").value.trim();
+            const phone   = document.getElementById("phone").value.trim();
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("message").value.trim();
+            submitButton.disabled = !(name && email && phone && subject && message);
+        }
+
+     
+        const textInputs = Array.from(form.querySelectorAll("input, textarea"));
+        textInputs.forEach((input) => {
+            input.addEventListener("input", checkFormFilled);
+        });
+
+        const selectInput = document.getElementById("subject");
+        if (selectInput) {
+            selectInput.addEventListener("change", checkFormFilled);
+        }
+        
+        submitButton.disabled = true;
+        form.reset();
+        if (phoneMask) phoneMask.updateValue();
+    }
     </script>
 </body>
 
