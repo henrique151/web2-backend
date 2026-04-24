@@ -3,15 +3,58 @@ $nome = "";
 $email = "";
 $telefone = "";
 $servico = "";
-$mensagem = "";
+$mensagemEmail = "";
+$tipoMensagem = "";
+
+$db_url = getenv("DATABASE_URL");
+
+if (!$db_url) {
+    die("Erro: variável DATABASE_URL não encontrada.");
+}
+
+$conn = pg_connect($db_url);
+
+if (!$conn) {
+    die("Erro ao conectar no banco de dados.");
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["name"] ?? "";
     $email = $_POST["email"] ?? "";
     $telefone = $_POST["phone"] ?? "";
     $servico = $_POST["subject"] ?? "";
-    $mensagem = $_POST["message"] ?? "";
+    $mensagemEmail = $_POST["messageEmail"] ?? "";
+
+     if ($nome === "" || $email === "" || $telefone === "" || $servico == ""  ||  $mensagemEmail == "" ) {
+        $mensagem = "Preencha todos os campos.";
+        $tipoMensagem = "erro";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $mensagem = "Digite um e-mail válido.";
+        $tipoMensagem = "erro";
+    } else {
+        $query = "INSERT INTO usuarios (nome, email, telefone, servico, mensagemEmail) VALUES ($1, $2, $3, $4, $5)";
+        $result = pg_query_params($conn, $query, [$nome, $email, $telefone, $servico, $mensagemEmail]);
+
+        if ($result) {
+            $mensagem = "Usuário cadastrado com sucesso no banco de dados.";
+            $tipoMensagem = "sucesso";
+
+            $nome = "";
+            $email = "";
+            $telefone = "";
+            $servico = "";
+            $mensagemEmail = "";
+            
+        } else {
+            $mensagem = "Erro ao salvar no banco de dados.";
+            $tipoMensagem = "erro";
+        }
+    }
 }
+
+$queryLista = "SELECT id, nome, email, servico, mensagemEmail telefone FROM usuarios ORDER BY id DESC";
+$resultLista = pg_query($conn, $queryLista);    
 ?>
 
 <!DOCTYPE html>
@@ -281,7 +324,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <!-- Mensagem -->
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" name="message" id="message" placeholder="Digite sua mensagem aqui..."
+                            <textarea class="form-control" name="messageEmail" id="message" placeholder="Digite sua mensagem aqui..."
                                 style="height: 10rem" data-sb-validations="required"></textarea>
                             <label for="message">Mensagem</label>
                             <div class="invalid-feedback" data-sb-feedback="message:required">
@@ -324,6 +367,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p><strong>Serviço:</strong> <?= htmlspecialchars($servico) ?></p>
                 <p><strong>Mensagem:</strong> <?= htmlspecialchars($mensagem) ?></p>
               </div>
+            <?php endif; ?>
+
+             <?php if ($mensagem !== ""): ?>
+              <div class="mensagem <?php echo $tipoMensagem; ?>">
+                <?php echo htmlspecialchars($mensagem); ?>
+              </div>
+            <?php endif; ?>
+
+            <?php if ($resultLista && pg_num_rows($resultLista) > 0): ?>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Serviço</th>
+                    <th>Messagem do Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php while ($usuario = pg_fetch_assoc($resultLista)): ?>
+                    <tr>
+                      <td><?php echo htmlspecialchars($usuario["id"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["nome"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["email"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["telefone"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["servico"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["mensagemEmail"]); ?></td>
+                    </tr>
+                  <?php endwhile; ?>
+                </tbody>
+              </table>
+            <?php else: ?>
+              <p class="sem-registros">Nenhum usuário cadastrado.</p>
             <?php endif; ?>
 
             <!-- Informações de contato -->
