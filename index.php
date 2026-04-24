@@ -54,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// FIX 3: REMOVIDA a query que listava todos os usuários publicamente (falha de segurança grave)
-// Se precisar de uma área administrativa, ela deve ser protegida por autenticação em página separada.
+$queryLista = "SELECT id, nome, email, telefone FROM usuarios ORDER BY id DESC";
+$resultLista = pg_query($conn, $queryLista);   
 ?>
 
 <!DOCTYPE html>
@@ -370,6 +370,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
               </div>
             <?php endif; ?>
+
+            <h2 style="margin-top: 35px;">Usuários cadastrados</h2>
+            <?php if ($resultLista && pg_num_rows($resultLista) > 0): ?>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Serviço</th>
+                    <th>Mensagem de Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php while ($usuario = pg_fetch_assoc($resultLista)): ?>
+                    <tr>
+                      <td><?php echo htmlspecialchars($usuario["id"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["nome"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["email"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["telefone"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["servico"]); ?></td>
+                      <td><?php echo htmlspecialchars($usuario["mensagemEmail"]); ?></td>
+                    </tr>
+                  <?php endwhile; ?>
+                </tbody>
+              </table>
+            <?php else: ?>
+              <p class="sem-registros">Nenhum usuário cadastrado.</p>
+            <?php endif; ?>
+            
 
             <!-- Informações de contato -->
             <div class="row gx-4 gx-lg-5 justify-content-center">
