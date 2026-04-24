@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$queryLista = "SELECT id, nome, email, servico, mensagemEmail telefone FROM usuarios ORDER BY id DESC";
+$queryLista = "SELECT id, nome, email, telefone, servico, mensagemEmail FROM usuarios ORDER BY id DESC";
 $resultLista = pg_query($conn, $queryLista);    
 ?>
 
