@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $servico = $_POST["subject"] ?? "";
     $mensagemEmail = $_POST["messageEmail"] ?? "";
 
-     if ($nome === "" || $email === "" || $telefone === "" || $servico == ""  ||  $mensagemEmail == "" ) {
+     if ($nome === "" || $email === "" || $telefone === "" || $servico === ""  ||  $mensagemEmail === "") {
         $mensagem = "Preencha todos os campos.";
         $tipoMensagem = "erro";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
